@@ -1,0 +1,18 @@
+最佳练习之强制下线
+
+思路
+1.通过定义一个Activity类继承Activity，定义关闭全部活动的功能
+2.定义一个控制器管理相关的活动
+3.通过广播触发该功能，并启动相关对话框
+
+步骤
+1.定义一个控制器ActivityController管理所有的活动:包括增加，移除活动和销毁所有活动，通过一个List承载
+2.定义一个基类继承Activity，改类的onCreate和onDestory方法分别实现增加和移除活动
+3.主界面MainActivity，具有Button，用于发送强制下线广播
+4.登录界面LoginActivity，登录成功则跳转至主界面
+5.静态广播接收器，用于接收强制下线广播，收到后销毁所有活动，弹出AlertDialog，提示重新登录
+6.Manifest注册，LoginActivity(入口),MainActivity(主界面),静态广播
+
+注意：
+1.Receiver中弹出对话框的步骤以及需要的权限
+2.Manifest中要声明权限 android.permission.SYSTEM_ALERT_WINDOW，因为需要对话框一直存活直到点击重新ok重新登录
